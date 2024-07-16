@@ -1,77 +1,92 @@
-const playerMove = {power: 8, element: 'water'}
+// const playerMove = {power: 8, element: 'water'}
 
-const healthPoint = {
-  player: 100,
-  opponent: 100
+/*   --- INITIALIZATION START ---   */
+if (!localStorage.getItem('healthPoint')) { // HEALTH POINT
+  const initialHP = {
+    player: 100,
+    opponent: 100
+  }
+  localStorage.setItem('healthPoint', JSON.stringify(initialHP));
 }
 
-const availableAttack = {
-  player: {1:true, 2:true, 3:true, 4:true, 5:true, 6:true, 7:true, 8:true, 9:true, 10:true,},
-  opponent: {1:true, 2:true, 3:true, 4:true, 5:true, 6:true, 7:true, 8:true, 9:true, 10:true,}
+const healthPoint = JSON.parse(localStorage.getItem('healthPoint'));
+
+
+if (!localStorage.getItem('availableAttack')) { // AVAILABLE ATTACK
+  const initialAvailableAttack = {
+    player: {1:true, 2:true, 3:true, 4:true, 5:true, 6:true, 7:true, 8:true, 9:true, 10:true},
+    opponent: {1:true, 2:true, 3:true, 4:true, 5:true, 6:true, 7:true, 8:true, 9:true, 10:true}
+  }
+  localStorage.setItem('availableAttack', JSON.stringify(initialAvailableAttack));
 }
 
-const cooldowns = {
-  player: {2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,},
-  opponent: {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,}
+const availableAttack = JSON.parse(localStorage.getItem('availableAttack'));
+
+if (!localStorage.getItem('cooldowns')) { // COOLDOWNS
+  const initialCooldowns = {
+    player: {2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,},
+    opponent: {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,}
+  }
+  localStorage.setItem('cooldowns', JSON.stringify(initialCooldowns));
 }
 
-const attackHistory = {
-  player: [],
-  opponent: []
+const cooldowns = JSON.parse(localStorage.getItem('cooldowns'));
+
+if (!localStorage.getItem('attackHistory')) {
+  const initialAttackHistory = {
+    player: [],
+    opponent: []
+  }
+  localStorage.setItem('attackHistory', JSON.stringify(initialAttackHistory));
 }
+
+const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
+/*   --- INITIALIZATION END --- */
 
 
 function main(playerMove) {
-
-/*         --- PLAYER SIDE START ---       */
-
+  // player side
   const playerPower = playerMove.power;
   const playerElement = playerMove.element;
-
-  // PUSH PLAYER ATTACK HISTORY
-  attackHistory.player.push([playerPower, playerElement])
-  
-  // REDUCE PLAYER COOLDOWN
+  attackHistory.player.push([playerPower, playerElement]);
   for (power in cooldowns.player) {
     if (cooldowns.player[power] > 0) cooldowns.player[power] -= 1;
     else availableAttack.player[power] = true;
   }
-
-  // DISABLE PLAYER POWER OPTION AND SET COOLDOWN
   availableAttack.player[playerPower] = false;
-  cooldowns.player[playerPower.toString()] = playerPower - 1;
-
-/*         --- PLAYER SIDE END ---       */
-
-
-/*         --- OPPONENT SIDE START ---       */
-
-  // GENERATE OPPONENT MOVE
+  cooldowns.player[playerPower.toString()] = playerPower - 1; // PLAYER SIDE END 
+  
+  // opponent side
   const opponentMove = generateOpponentMove(availableAttack.opponent); 
-  
-  // PUSH OPPONENT ATTACK HISTORY
-  attackHistory.opponent.push([opponentMove.power, opponentMove.element])
+  attackHistory.opponent.push([opponentMove.power, opponentMove.element]);
+  for (power in cooldowns.opponent) {
+    if (cooldowns.opponent[power] > 0) cooldowns.opponent[power] -= 1;
+    else availableAttack.opponent[power] = true;
+  }
+  availableAttack.opponent[opponentMove.power] = false;
+  cooldowns.opponent[opponentMove.power.toString()] = opponentMove.power - 1;
 
-  // REDUCE OPPONENT COOLDOWN
-  
-
-
-/*         --- OPPONENT SIDE END ---       */
   
   
-  // CALCULATE DAMAGE
+  // calculate damage
   const damageTaken = generateDamageTaken(playerMove, opponentMove)
-
-
+  healthPoint.player -= damageTaken.player;
+  healthPoint.opponent -= damageTaken.opponent;
+  
+  // auto-save
+  localStorage.setItem('availableAttack', JSON.stringify(availableAttack));
+  localStorage.setItem('attackHistory', JSON.stringify(attackHistory));
+  localStorage.setItem('cooldowns', JSON.stringify(cooldowns));
+  localStorage.setItem('healthPoint', JSON.stringify(healthPoint));
 
   // CHECKPOINT
-  // console.log('player move :', playerMove)
-  // console.log('opponent move :', opponentMove)
-  // console.log('attackHistory :', attackHistory)
-  // console.log(damageTaken)
+  console.log('player move :', playerMove)
+  console.log('opponent move :', opponentMove)
+  console.log('attack history :', attackHistory)
+  console.log('cooldowns :', cooldowns)
+  console.log('damage taken:', damageTaken)
 
-  console.log(attackHistory)
-  return ''
+  return healthPoint;
 }
 
 function generateOpponentMove(availableAttack) {
@@ -128,6 +143,5 @@ function generateDamageTaken(playerMove, opponentMove){
   return damageTaken;
 }
 
-console.log(main(playerMove))
-
+// main(playerMove)
 
