@@ -1,25 +1,124 @@
-* {
-  margin: 0;
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin-top: 200px;
   padding: 0;
 }
 
-body {
-  min-height: 100vh;
-  width: 100vw;
+/* =================== container =================== */
+.container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  width: 90%;
+}
+
+/* ===================healthbars =================== */
+.health-bars {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.health-bars div {
+  text-align: center;
+}
+
+/* =================== input attack =================== */
+.attack-power {
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.main {
-  width: 80%;
-  aspect-ratio: 16 / 9;
-  border: 1px solid;
-  border-radius: 10px;
+.attack-power input {
+  font-size: 16px;
+  width: 50px;
+  text-align: center;
 }
 
-.hp-space {
-  height: 15%;
-  width: 100%;
+/* =================== element button =================== */
+
+.choices button#fire {
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
+.choices button#wind {
+  background-color: grey;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
+.choices button#water {
+  background-color: blue;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
+.choices button#fire:hover {
+  background-color: darkred;
+}
+.choices button#wind:hover {
+  background-color: darkgrey;
+}
+.choices button#water:hover {
+  background-color: #0056b3;
+}
+
+/* =================== attack button =================== */
+
+.btn-attack {
+  margin-top: 20px;
+}
+
+.btn-attack button#attack {
+  background-color: black;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
+/* =================== characters & battle effects =================== */
+.main-content {
   display: flex;
+  justify-content: center;
+
+}
+
+.player {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+}
+
+.battle-effect {
+  width: 100px;
+  height: 20px;
+  border: 1px solid;
 }

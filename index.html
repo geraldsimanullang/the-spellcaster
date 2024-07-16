@@ -1,27 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Spellcaster</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kertas Gunting Batu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="main">
-    <div class="hp-space">
-      <div class="player-hp"></div>
-      <div class="opponent-hp"></div>
+    <div class="container">
+<!--=============================== healthbars ===============================-->
+        <div class="health-bars">
+            <div>
+                <p>Healthbar player</p>
+                <progress id="player-health" value="50" max="100"></progress>
+            </div>
+            <div>
+                <p>Healthbar enemies</p>
+                <progress id="computer-health" value="20" max="100"></progress>
+            </div>
+        </div>
+
+<!--===============================  image / char player  ===============================-->
+        <div class="main-content">
+          <div class="player"></div>
+          <div class="battle-effect"></div>
+          <div class="player"></div>
+        </div>
+<!--=============================== input power  ===============================-->
+        <div class="attack-power">
+          <div>
+            <p>1</p>
+            <input type="radio" id="1" name="drone" value="1" checked />
+          </div>
+          <div>
+            <p>2</p>
+            <input type="radio" id="2" name="drone" value="2" checked />
+          </div>
+          <div>
+            <p>3</p>
+            <input type="radio" id="3" name="drone" value="3" checked />
+          </div>
+          <div>
+            <p>4</p>
+            <input type="radio" id="4" name="drone" value="4" checked />
+          </div>
+          <div>
+            <p>5</p>
+            <input type="radio" id="5" name="drone" value="5" checked />
+          </div>
+          <div>
+            <p>6</p>
+            <input type="radio" id="6" name="drone" value="6" checked />
+          </div>
+          <div>
+            <p>7</p>
+            <input type="radio" id="7" name="drone" value="7" checked />
+          </div>
+          <div>
+            <p>8</p>
+            <input type="radio" id="8" name="drone" value="8" checked />
+          </div>
+          <div>
+            <p>9</p>
+            <input type="radio" id="9" name="drone" value="9" checked />
+          </div>
+          <div>
+            <p>10</p>
+            <input type="radio" id="10" name="drone" value="10" checked />
+          </div>
+
+  <!--=============================== element choices ===============================-->
+        </div>
+        <div class="choices">
+            <button id="fire" onclick="play('fire')">fire</button>
+            <button id="wind" onclick="play('wind')">wind</button>
+            <button id="water" onclick="play('water')">water</button>
+        </div>
+
+<!--=============================== attack button ===============================-->
+        <div class="btn-attack">
+          <button id="attack" onclick="play('attack')">attack</button>
+        </div>
     </div>
-    <div class="battle-ground">
-
-    </div>
-    <div class="player-choice">
-
-    </div>
-  </div>
-
-
-
-  <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
