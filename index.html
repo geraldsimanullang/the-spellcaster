@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kertas Gunting Batu</title>
+    <title>The Spellcaster</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +12,11 @@
         <div class="health-bars">
             <div>
                 <p>Healthbar player</p>
-                <progress id="player-health" value="50" max="100"></progress>
+                <progress id="player-health" max="100"></progress>
             </div>
             <div>
                 <p>Healthbar enemies</p>
-                <progress id="computer-health" value="20" max="100"></progress>
+                <progress id="opponent-health" max="100"></progress>
             </div>
         </div>
 
@@ -30,43 +30,43 @@
         <div class="attack-power">
           <div>
             <p>1</p>
-            <input type="radio" id="1" name="drone" value="1" checked />
+            <input type="radio" id="1" name="power" value="1" />
           </div>
           <div>
             <p>2</p>
-            <input type="radio" id="2" name="drone" value="2" checked />
+            <input type="radio" id="2" name="power" value="2" />
           </div>
           <div>
             <p>3</p>
-            <input type="radio" id="3" name="drone" value="3" checked />
+            <input type="radio" id="3" name="power" value="3" />
           </div>
           <div>
             <p>4</p>
-            <input type="radio" id="4" name="drone" value="4" checked />
+            <input type="radio" id="4" name="power" value="4" />
           </div>
           <div>
             <p>5</p>
-            <input type="radio" id="5" name="drone" value="5" checked />
+            <input type="radio" id="5" name="power" value="5" />
           </div>
           <div>
             <p>6</p>
-            <input type="radio" id="6" name="drone" value="6" checked />
+            <input type="radio" id="6" name="power" value="6" />
           </div>
           <div>
             <p>7</p>
-            <input type="radio" id="7" name="drone" value="7" checked />
+            <input type="radio" id="7" name="power" value="7" />
           </div>
           <div>
             <p>8</p>
-            <input type="radio" id="8" name="drone" value="8" checked />
+            <input type="radio" id="8" name="power" value="8" />
           </div>
           <div>
             <p>9</p>
-            <input type="radio" id="9" name="drone" value="9" checked />
+            <input type="radio" id="9" name="power" value="9" />
           </div>
           <div>
             <p>10</p>
-            <input type="radio" id="10" name="drone" value="10" checked />
+            <input type="radio" id="10" name="power" value="10" />
           </div>
 
   <!--=============================== element choices ===============================-->
@@ -75,13 +75,38 @@
             <button id="fire" onclick="play('fire')">fire</button>
             <button id="wind" onclick="play('wind')">wind</button>
             <button id="water" onclick="play('water')">water</button>
+
+            <form>
+              <input type="radio" name="element" value="fire" id="fire"> Fire
+              <input type="radio" name="element" value="wind" id="wind"> Wind
+              <input type="radio" name="element" value="water" id="water"> Watter
+            </form>
         </div>
 
 <!--=============================== attack button ===============================-->
         <div class="btn-attack">
-          <button id="attack" onclick="play('attack')">attack</button>
+          <button id="attack" onclick="
+            const powerList= document.getElementsByName('power')
+            const elementList = document.getElementsByName('element')
+            let powerSelection;
+            let elementSelection;
+            for (let i = 0; i < powerList.length; i++) {
+              if (powerList[i].checked){
+                powerSelection = powerList[i].value;
+              }
+            }
+
+            for (let i = 0; i < elementList.length; i++) {
+              if (elementList[i].checked){
+                elementSelection = elementList[i].value;
+              }
+            }
+            
+            main({power: powerSelection, element: elementSelection})
+
+            ">attack</button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

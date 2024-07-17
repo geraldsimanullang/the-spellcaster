@@ -1,5 +1,3 @@
-// const playerMove = {power: 8, element: 'water'}
-
 /*   --- INITIALIZATION START ---   */
 if (!localStorage.getItem('healthPoint')) { // HEALTH POINT
   const initialHP = {
@@ -41,6 +39,9 @@ if (!localStorage.getItem('attackHistory')) {
 }
 
 const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
+
+updateHpBar();
+disablePower();
 /*   --- INITIALIZATION END --- */
 
 
@@ -78,6 +79,10 @@ function main(playerMove) {
   localStorage.setItem('attackHistory', JSON.stringify(attackHistory));
   localStorage.setItem('cooldowns', JSON.stringify(cooldowns));
   localStorage.setItem('healthPoint', JSON.stringify(healthPoint));
+
+  // update bar hp & disable power
+  updateHpBar();
+  disablePower();
 
   // CHECKPOINT
   console.log('player move :', playerMove)
@@ -143,5 +148,16 @@ function generateDamageTaken(playerMove, opponentMove){
   return damageTaken;
 }
 
-// main(playerMove)
+function updateHpBar() {
+  document.getElementById('player-health').value = healthPoint.player.toString();
+  document.getElementById('opponent-health').value = healthPoint.opponent.toString();
+}
+
+function disablePower() {
+  for (let i = 1; i <= 10; i++) {
+    if (availableAttack.player[i] === false) {
+      document.getElementById[i.toString()].disabled = true;
+    }
+  }
+}
 
