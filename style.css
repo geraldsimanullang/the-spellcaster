@@ -12,7 +12,7 @@ body {
 
 /* =================== container =================== */
 .container {
-  background: url("Assets/parallax-forest-front-trees.png");
+  background: url("Assets/966315.svg");
   background-size: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -45,7 +45,7 @@ body {
 }
 
 .player-health, .opponent-health {
-  width: 100%
+  
 } 
 
 /* =================== input attack =================== */
