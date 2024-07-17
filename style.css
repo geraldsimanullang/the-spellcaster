@@ -2,20 +2,33 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f0f0f0;
-  margin-top: 200px;
+  margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* =================== container =================== */
 .container {
-  background-color: white;
+  background: url("Assets/parallax-forest-front-trees.png");
+  background-size: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  margin-top: 50px;
-  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   text-align: center;
   width: 90%;
+  aspect-ratio: 16 / 9;
+
+  
+}
+
+/* ===================healthbars =================== */
+.attack-history {
+  height: 10%;
 }
 
 /* ===================healthbars =================== */
@@ -23,11 +36,17 @@ body {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
+  width: 100%;
+  height: 10%;
 }
 
 .health-bars div {
   text-align: center;
 }
+
+.player-health, .opponent-health {
+  width: 100%
+} 
 
 /* =================== input attack =================== */
 .attack-power {
@@ -44,7 +63,7 @@ body {
 
 /* =================== element button =================== */
 
-.choices button#fire {
+.element button#fire {
   background-color: red;
   border: none;
   border-radius: 50%;
@@ -55,7 +74,7 @@ body {
   padding: 10px 20px;
 }
 
-.choices button#wind {
+.element button#wind {
   background-color: grey;
   border: none;
   border-radius: 50%;
@@ -66,7 +85,7 @@ body {
   padding: 10px 20px;
 }
 
-.choices button#water {
+.element button#water {
   background-color: blue;
   border: none;
   border-radius: 50%;
@@ -77,13 +96,13 @@ body {
   padding: 10px 20px;
 }
 
-.choices button#fire:hover {
+.element button#fire:hover {
   background-color: darkred;
 }
-.choices button#wind:hover {
+.element button#wind:hover {
   background-color: darkgrey;
 }
-.choices button#water:hover {
+.element button#water:hover {
   background-color: #0056b3;
 }
 

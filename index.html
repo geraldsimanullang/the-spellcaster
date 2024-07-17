@@ -8,14 +8,16 @@
 </head>
 <body>
     <div class="container">
+<!--=============================== attackHistory ===============================-->
+        <div class="attack-history">
+
+        </div>
 <!--=============================== healthbars ===============================-->
         <div class="health-bars">
             <div>
-                <p>Healthbar player</p>
                 <progress id="player-health" max="50"></progress>
             </div>
             <div>
-                <p>Healthbar enemies</p>
                 <progress id="opponent-health" max="50"></progress>
             </div>
         </div>
@@ -71,11 +73,7 @@
 
   <!--=============================== element choices ===============================-->
         </div>
-        <div class="choices">
-            <button id="fire" onclick="play('fire')">fire</button>
-            <button id="wind" onclick="play('wind')">wind</button>
-            <button id="water" onclick="play('water')">water</button>
-
+        <div class="element">
             <form>
               <input type="radio" name="element" value="fire" id="fire"> Fire
               <input type="radio" name="element" value="wind" id="wind"> Wind
