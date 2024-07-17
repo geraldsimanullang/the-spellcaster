@@ -22,7 +22,7 @@ const availableAttack = JSON.parse(localStorage.getItem('availableAttack'));
 
 if (!localStorage.getItem('cooldowns')) { // COOLDOWNS
   const initialCooldowns = {
-    player: {2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,},
+    player: {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,},
     opponent: {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0,}
   }
   localStorage.setItem('cooldowns', JSON.stringify(initialCooldowns));
@@ -41,11 +41,13 @@ if (!localStorage.getItem('attackHistory')) {
 const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 
 updateHpBar();
-disablePower();
+powerPermission();
 /*   --- INITIALIZATION END --- */
 
 
 function main(playerMove) {
+  
+  
   // player side
   const playerPower = playerMove.power;
   const playerElement = playerMove.element;
@@ -82,14 +84,14 @@ function main(playerMove) {
 
   // update bar hp & disable power
   updateHpBar();
-  disablePower();
+  powerPermission();
 
   // CHECKPOINT
-  console.log('player move :', playerMove)
-  console.log('opponent move :', opponentMove)
-  console.log('attack history :', attackHistory)
-  console.log('cooldowns :', cooldowns)
-  console.log('damage taken:', damageTaken)
+  // console.log('player move :', playerMove)
+  // console.log('opponent move :', opponentMove)
+  // console.log('attack history :', attackHistory)
+  // console.log('cooldowns :', cooldowns)
+  // console.log('damage taken:', damageTaken)
 
   return healthPoint;
 }
@@ -153,10 +155,17 @@ function updateHpBar() {
   document.getElementById('opponent-health').value = healthPoint.opponent.toString();
 }
 
-function disablePower() {
-  for (let i = 1; i <= 10; i++) {
-    if (availableAttack.player[i] === false) {
-      document.getElementById[i.toString()].disabled = true;
+function powerPermission() {
+  const powers = document.getElementsByName('power');
+  powers.forEach(function(power) {
+    power.checked = false;
+  });
+
+  for (let i = 2; i <= 10; i++) {
+    if (availableAttack.player[i.toString()] === false) {
+      document.getElementById(i.toString()).disabled = true;
+    } else {
+      document.getElementById(i.toString()).disabled = false;
     }
   }
 }
