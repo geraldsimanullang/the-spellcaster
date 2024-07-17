@@ -47,7 +47,7 @@ powerPermission();
 
 function main(playerMove) {
   
-  
+  powerPermission();
   // player side
   const playerPower = playerMove.power;
   const playerElement = playerMove.element;
