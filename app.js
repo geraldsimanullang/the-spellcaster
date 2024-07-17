@@ -1,8 +1,8 @@
 /*   --- INITIALIZATION START ---   */
 if (!localStorage.getItem('healthPoint')) { // HEALTH POINT
   const initialHP = {
-    player: 100,
-    opponent: 100
+    player: 50,
+    opponent: 50
   }
   localStorage.setItem('healthPoint', JSON.stringify(initialHP));
 }
@@ -53,7 +53,7 @@ function main(playerMove) {
   const playerElement = playerMove.element;
   attackHistory.player.push([playerPower, playerElement]);
   for (power in cooldowns.player) {
-    if (cooldowns.player[power] > 0) cooldowns.player[power] -= 1;
+    if (cooldowns.player[power] > 1) cooldowns.player[power] -= 1;
     else availableAttack.player[power] = true;
   }
   availableAttack.player[playerPower] = false;
