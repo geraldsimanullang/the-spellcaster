@@ -42,6 +42,7 @@ const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 
 updateHpBar();
 powerPermission();
+addAttackHistory();
 /*   --- INITIALIZATION END --- */
 
 
@@ -57,7 +58,9 @@ function main(playerMove) {
     else availableAttack.player[power] = true;
   }
   availableAttack.player[playerPower] = false;
-  cooldowns.player[playerPower.toString()] = playerPower - 1; // PLAYER SIDE END 
+  cooldowns.player[playerPower.toString()] = playerPower - 1; 
+  
+  
   
   // opponent side
   const opponentMove = generateOpponentMove(availableAttack.opponent); 
@@ -68,7 +71,7 @@ function main(playerMove) {
   }
   availableAttack.opponent[opponentMove.power] = false;
   cooldowns.opponent[opponentMove.power.toString()] = opponentMove.power - 1;
-
+  
   
   
   // calculate damage
@@ -81,11 +84,12 @@ function main(playerMove) {
   localStorage.setItem('attackHistory', JSON.stringify(attackHistory));
   localStorage.setItem('cooldowns', JSON.stringify(cooldowns));
   localStorage.setItem('healthPoint', JSON.stringify(healthPoint));
-
+  
   // update bar hp & disable power
   updateHpBar();
   powerPermission();
-
+  addAttackHistory();// PLAYER SIDE END 
+  
   // CHECKPOINT
   // console.log('player move :', playerMove)
   // console.log('opponent move :', opponentMove)
@@ -170,3 +174,25 @@ function powerPermission() {
   }
 }
 
+function addAttackHistory(){
+  const playerNode = document.getElementById('player-history')
+  playerNode.innerHTML= '';
+
+  for (let i = 0; i < attackHistory.player.length; i++) {
+    const playerElem = document.createElement("img");
+    playerElem.setAttribute("src", `Assets/${attackHistory.player[i][1]}icon.png`);
+    playerElem.style.margin = "0 0.5% 0 0";
+    playerElem.style.width = "3%"
+    playerNode.appendChild(playerElem);
+  }
+
+
+
+  // const playerPower = document.createElement("p");
+  // playerPower.setAttribute("margin", "0");
+  // playerPower.innerHTML = playerMove.power.toString();
+
+  // document.getElementById('attack-history').appendChild(playerPower);
+  // document.getElementById('attack-history').appendChild('vs');
+
+}
