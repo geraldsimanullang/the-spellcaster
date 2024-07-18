@@ -43,8 +43,6 @@ const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 updateHpBar();
 powerPermission();
 addAttackHistory();
-document.getElementById('player-history').innerHTML = '';
-document.getElementById('opponent-history').innerHTML = '';
 checkWinner();
 /*   --- INITIALIZATION END --- */
 
@@ -192,6 +190,7 @@ function addAttackHistory(){
   const opponentText = document.createElement("p");
   opponentText.innerHTML = 'Opponent'
   opponentText.style.width = '6%'
+  opponentText.style.color = "white";
   opponentText.setAttribute("align", "right")
   opponentNode.appendChild(opponentText);
 
@@ -201,6 +200,7 @@ function addAttackHistory(){
     opponentPower.style.margin = '0'
     opponentPower.style.marginLeft = '0.5%'
     opponentPower.style.width = '1.5%'
+    opponentPower.style.color = "white";
     opponentPower.innerHTML = attackHistory.opponent[i][0];
     opponentNode.append(opponentPower)
 
@@ -216,6 +216,7 @@ function addAttackHistory(){
   const playerText = document.createElement("p");
   playerText.innerHTML = 'You'
   playerText.style.width = '6%'
+  playerText.style.color = "white";
   playerText.setAttribute("align", "right")
   playerNode.appendChild(playerText);
 
@@ -224,6 +225,7 @@ function addAttackHistory(){
     playerPower.style.margin = '0'
     playerPower.style.marginLeft = '0.5%'
     playerPower.style.width = '1.5%'
+    playerPower.style.color = "white";
     playerPower.innerHTML = attackHistory.player[i][0];
     playerNode.append(playerPower)
 

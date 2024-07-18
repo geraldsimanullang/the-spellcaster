@@ -32,7 +32,11 @@ body {
   align-items: center;
   justify-content: start;
   padding-left: 1%;
-  margin-top: 0.5%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#opponent-history {
+  margin-top: 1%;
 }
 
 #player-history {
