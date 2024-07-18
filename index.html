@@ -31,11 +31,11 @@
             <img src="Assets/playeridle.gif" alt="Player char" class="char" id="player-char">
           </div>
           <div class="battle-effect">
-            <div class="playerAttack-normal">
-              <img id="player-atk-pic" src="Assets/fire.png" alt="">
+            <div class="playerAttack">
+              <img id="player-atk" src="Assets/fire.png">
             </div>
-            <div class="opponentAttack-normal">
-              <img id="opponent-atk-pic" src="Assets/fire.png" alt="">
+            <div class="opponentAttack">
+              <img id="opponent-atk" src="Assets/fireEnemy.png">
             </div>
           </div>
           <div class="opponent">
@@ -97,13 +97,16 @@
       </div>
 
       <!--=============================== element choices ===============================-->
-        <div class="element">
-            <form>
-              <input type="radio" name="element" value="fire" id="fire"> Fire
-              <input type="radio" name="element" value="wind" id="wind"> Wind
-              <input type="radio" name="element" value="water" id="water"> Watter
-            </form>
-        </div>
+      <div class="element">
+        <form class="element-form">
+          <input type="radio" name="element" value="fire" id="fire">
+          <label for="fire"><img class="element-img" src="Assets/fireicon.png"></label>
+          <input type="radio" name="element" value="wind" id="wind">
+          <label for="wind"><img class="element-img" src="Assets/windicon.png"></label>
+          <input type="radio" name="element" value="water" id="water">
+          <label for="water"><img class="element-img" src="Assets/watericon.png"></label>
+        </form>
+      </div>
 
 <!--=============================== attack button ===============================-->
         <div class="btn-attack">

@@ -40,6 +40,8 @@ if (!localStorage.getItem('attackHistory')) {
 
 const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 
+document.getElementById('attack').style.display = 'inline-block'
+
 updateHpBar();
 powerPermission();
 addAttackHistory();
@@ -83,14 +85,14 @@ function main(playerMove) {
   availableAttack.opponent[opponentMove.power] = false;
   cooldowns.opponent[opponentMove.power.toString()] = opponentMove.power - 1;
   
-  // animations
-  attackingAnimation(playerMove, opponentMove);
-  
   // calculate damage
   const damageTaken = generateDamageTaken(playerMove, opponentMove)
   healthPoint.player -= damageTaken.player;
   healthPoint.opponent -= damageTaken.opponent;
   
+  // animations
+  attackingAnimation(playerMove, opponentMove);
+
   // auto-save
   localStorage.setItem('availableAttack', JSON.stringify(availableAttack));
   localStorage.setItem('attackHistory', JSON.stringify(attackHistory));
@@ -102,7 +104,8 @@ function main(playerMove) {
   powerPermission();
   addAttackHistory();
   updateCdInfo();
-  checkWinner();// PLAYER SIDE END 
+  
+  // PLAYER SIDE END 
   
   // CHECKPOINT
   // console.log('player move :', playerMove)
@@ -111,7 +114,7 @@ function main(playerMove) {
   // console.log('cooldowns :', cooldowns)
   // console.log('damage taken:', damageTaken)
 
-  return healthPoint;
+  return checkWinner();
 }
 
 function generateOpponentMove(availableAttack) {
@@ -170,22 +173,40 @@ function generateDamageTaken(playerMove, opponentMove){
 
 function attackingAnimation(playerMove, opponentMove) {
   const char = document.getElementsByClassName("char");
-  const playerAtkPic = document.getElementById("player-atk-pic");
-  const opponentAtkPic = document.getElementById("opponent-atk-pic");
-
-  char[0].setAttribute("src", "Assets/playeratt.gif");
-  char[1].setAttribute("src", "Assets/enemyatt.gif");
-
+  const playerAtk = document.getElementById("player-atk");
+  const opponentAtk = document.getElementById("opponent-atk");
+  
   const playerPower = playerMove.power;
   const playerElement = playerMove.element;
   const opponentPower = opponentMove.power;
   const opponentElement = opponentMove.element;
 
-  playerAtkPic.setAttribute("src", `Assets/${playerElement}.png`)
-  playerAtkPic.style.width = `${playerPower}vw`
-  opponentAtkPic.setAttribute("src", `Assets/${opponentElement}.png`)
-  opponentAtkPic.style.width = `${opponentPower}vw`
+  char[0].setAttribute("src", "Assets/playeratt.gif");
+  char[1].setAttribute("src", "Assets/enemyatt.gif");
+  
+  playerAtk.style.opacity = "1";
+  opponentAtk.style.opacity = "1";
 
+  playerAtk.classList.add('player-animate');
+  opponentAtk.classList.add('opponent-animate');
+
+  playerAtk.addEventListener('animationend', function () {
+    playerAtk.style.opacity = "0";
+    playerAtk.classList.remove('player-animate')
+  }, {once: true})
+
+  opponentAtk.addEventListener('animationend', function () {
+    opponentAtk.style.opacity = "0";
+    opponentAtk.classList.remove('opponent-animate')
+  }, {once: true})
+
+
+
+  playerAtk.setAttribute("src", `Assets/${playerElement}.png`)
+  opponentAtk.setAttribute("src", `Assets/${opponentElement}Enemy.png`)
+
+  playerAtk.style.width = `${playerPower}vw`
+  opponentAtk.style.width = `${opponentPower}vw`
 
   setTimeout(() => {
     char[0].setAttribute("src", "Assets/playeridle.gif");
@@ -284,13 +305,45 @@ function updateCdInfo() {
 }
 
 function checkWinner() {
+  const timeout = 2000;
   if (healthPoint.player <= 0 && healthPoint.opponent > 0) {
-    alert('Anda tidak berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+    setTimeout(() => {
+      const char = document.getElementsByClassName("char");
+      char[0].setAttribute("src", "Assets/playerded.gif");
+      disableControl()
+    }, 1000);
+
+    setTimeout(() => {
+      alert('Anda tidak berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')  
+    }, timeout);
   } else if (healthPoint.player > 0 && healthPoint.opponent <= 0) {
-    alert('Selamat anda berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+    setTimeout(() => {
+      const char = document.getElementsByClassName("char");
+      char[1].setAttribute("src", "Assets/enemyded.gif");
+      disableControl()
+    }, 1000);
+    
+    setTimeout(() => {
+      alert('Selamat anda berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+      
+    }, timeout);
   } else if (healthPoint.player <= 0 && healthPoint.opponent <= 0) {
-    alert('Seri! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+    setTimeout(() => {
+      const char = document.getElementsByClassName("char");
+      char[0].setAttribute("src", "Assets/playerded.gif");
+      char[1].setAttribute("src", "Assets/enemyded.gif");
+      disableControl()
+    }, 1000);
+    
+    setTimeout(() => {
+      alert('Seri! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+      
+    }, timeout);
   }
+}
+
+function disableControl() {
+  document.getElementById('attack').style.display = 'none';
 }
 
 function reset() {

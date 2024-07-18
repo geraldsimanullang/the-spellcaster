@@ -12,7 +12,7 @@ body {
 
 /* =================== container =================== */
 .container {
-  background: url("Assets/containerBackground.svg");
+  background: url("Assets/705837.svg");
   background-size: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -93,29 +93,42 @@ progress[value] {
   min-width: 50%;
 }
 
-@keyframes opponentAttackAnimation {
-  from { transform: translateX(0);}
-  to { transform: translateX(-40vw);}
-}
-
-
-.opponentAttack-normal {
-  transform: scaleX(-1);
-  animation: opponentAttackAnimation 2s backwards
-}
-
-@keyframes playerAttackAnimation {
+@keyframes playerAtk {
   from { transform: translateX(0);}
   to { transform: translateX(40vw)}
 }
 
-.playerAttack-normal {
-  
+
+#player-atk {
+  opacity: 0;
+  position: absolute;
+  top: 50vh;
+  left: 28vw;
 }
 
-.playerAttack-animate {
-  animation: playerAttackAnimation 2s forwards;
+.player-animate {
+  opacity: 1;
+  animation: playerAtk 1s linear
 }
+
+@keyframes opponentAtk {
+  from { transform: translateX(0);}
+  to { transform: translateX(-40vw);}
+}
+
+#opponent-atk {
+  opacity: 0;
+  position: absolute;
+  top: 50vh;
+  left: 68vw;
+}
+
+.opponent-animate {
+  opacity: 1;
+  animation: opponentAtk 1s linear
+}
+
+
 
 /* =================== cooldowns & input attack =================== */
 .attack-power {
@@ -178,44 +191,35 @@ input[name="power"][disabled]+ label {
 }
 
 /* =================== element button =================== */
-
-.element button#fire {
-  background-color: red;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 2;
+  }
 }
 
-.element button#wind {
-  background-color: grey;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
+input[name="element"]{
+  display: none;
 }
 
-.element button#water {
-  background-color: blue;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
+input[name="element"]:checked + label {
+  width: 1%;
+  animation: blink 0.5s infinite
+}
+
+.element-img {
+  display: inline-block;
+  margin: 2vh;
+  width: 4%;
+  
 }
 
 /* =================== attack button =================== */
 
 .btn-attack {
-  margin-top: 20px;
+  margin: 0;
 }
 
 .btn-attack button#attack {
