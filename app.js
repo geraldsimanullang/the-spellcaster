@@ -1,8 +1,8 @@
 /*   --- INITIALIZATION START ---   */
 if (!localStorage.getItem('healthPoint')) { // HEALTH POINT
   const initialHP = {
-    player: 50,
-    opponent: 50
+    player: 35,
+    opponent: 35
   }
   localStorage.setItem('healthPoint', JSON.stringify(initialHP));
 }
@@ -177,7 +177,7 @@ function attackingAnimation() {
   setTimeout(() => {
     char[0].setAttribute("src", "Assets/playeridle.gif");
     char[1].setAttribute("src", "Assets/enemyidle.gif");
-  }, 500);
+  }, 1000);
 }
 
 
