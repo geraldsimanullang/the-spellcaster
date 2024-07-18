@@ -29,8 +29,14 @@ body {
 #player-history, #opponent-history {
   height: 5%;
   display: flex;
-  align-items: start;
+  align-items: center;
+  justify-content: start;
   padding-left: 1%;
+  margin-top: 0.5%;
+}
+
+#player-history {
+  margin-bottom: 3%;
 }
 
 /* ===================healthbars =================== */

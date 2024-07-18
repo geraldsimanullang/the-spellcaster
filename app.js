@@ -175,24 +175,61 @@ function powerPermission() {
 }
 
 function addAttackHistory(){
-  const playerNode = document.getElementById('player-history')
+  const opponentNode = document.getElementById('opponent-history');
+  opponentNode.innerHTML = '';
+  const opponentText = document.createElement("p");
+  opponentText.innerHTML = 'Opponent'
+  opponentText.style.width = '6%'
+  opponentText.setAttribute("align", "right")
+  opponentNode.appendChild(opponentText);
+
+
+  for (let i = 0; i < attackHistory.opponent.length; i++) {
+    const opponentPower = document.createElement("p");
+    opponentPower.style.margin = '0'
+    opponentPower.style.marginLeft = '0.5%'
+    opponentPower.style.width = '1.5%'
+    opponentPower.innerHTML = attackHistory.opponent[i][0];
+    opponentNode.append(opponentPower)
+
+    const opponentElem = document.createElement("img");
+    opponentElem.setAttribute("src", `Assets/${attackHistory.opponent[i][1]}icon.png`);
+    opponentElem.style.margin = "0 0.5% 0 0";
+    opponentElem.style.width = "1.5%"
+    opponentNode.appendChild(opponentElem);
+  }
+  
+  const playerNode = document.getElementById('player-history');
   playerNode.innerHTML= '';
+  const playerText = document.createElement("p");
+  playerText.innerHTML = 'You'
+  playerText.style.width = '6%'
+  playerText.setAttribute("align", "right")
+  playerNode.appendChild(playerText);
 
   for (let i = 0; i < attackHistory.player.length; i++) {
+    const playerPower = document.createElement("p");
+    playerPower.style.margin = '0'
+    playerPower.style.marginLeft = '0.5%'
+    playerPower.style.width = '1.5%'
+    playerPower.innerHTML = attackHistory.player[i][0];
+    playerNode.append(playerPower)
+
     const playerElem = document.createElement("img");
     playerElem.setAttribute("src", `Assets/${attackHistory.player[i][1]}icon.png`);
     playerElem.style.margin = "0 0.5% 0 0";
-    playerElem.style.width = "3%"
+    playerElem.style.width = "1.5%"
     playerNode.appendChild(playerElem);
   }
+}
 
+function checkWinner() {
+  if (healthPoint.player <= 0 && healthPoint.opponent > 0) {
 
+  } 
+}
 
-  // const playerPower = document.createElement("p");
-  // playerPower.setAttribute("margin", "0");
-  // playerPower.innerHTML = playerMove.power.toString();
-
-  // document.getElementById('attack-history').appendChild(playerPower);
-  // document.getElementById('attack-history').appendChild('vs');
-
+function reset() {
+  localStorage.clear()
+  location.reload()
 }
