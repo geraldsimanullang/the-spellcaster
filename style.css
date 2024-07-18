@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: black;
   margin: 0;
   padding: 0;
   display: flex;
@@ -12,7 +12,7 @@ body {
 
 /* =================== container =================== */
 .container {
-  background: url("Assets/966315.svg");
+  background: url("Assets/containerBackground.svg");
   background-size: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -65,17 +65,17 @@ body {
   display: flex;
   justify-content: center;
   height: 30%;
+  margin-top: 10%;
 }
 
 .player, .opponent {
   height: 100%;
-  border: 1px solid;
   display: flex;
-  align-items: center;
+  align-items: end;
 }
 
 #player-char, #opponent-char {
-  height: 40%;
+  height: 50%;
 }
 
 #opponent-char {
@@ -84,23 +84,40 @@ body {
 
 .battle-effect {
   min-width: 50%;
-  border: 1px solid;
 }
 
 
-/* =================== cooldowns =================== */
+/* =================== cooldowns & input attack =================== */
 .attack-power {
   display: flex;
   width: 100%;
 }
 
 input[name="power"] { /* ini radio */
-
+  display: none;
 }
 
 input[name="power"] + label {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  margin: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+input[name="power"]:checked + label {
   background-color: white;
   color: black;
+}
+
+input[name="power"][disabled]+ label {
+  opacity: 0.2;
 }
 
 .selection-container {
@@ -118,7 +135,6 @@ input[name="power"] + label {
 
 }
 
-/* =================== input attack =================== */
 .attack-power {
   margin-bottom: 20px;
   display: flex;
@@ -166,16 +182,6 @@ input[name="power"] + label {
   padding: 10px 20px;
 }
 
-.element button#fire:hover {
-  background-color: darkred;
-}
-.element button#wind:hover {
-  background-color: darkgrey;
-}
-.element button#water:hover {
-  background-color: #0056b3;
-}
-
 /* =================== attack button =================== */
 
 .btn-attack {
@@ -193,4 +199,12 @@ input[name="power"] + label {
   padding: 10px 20px;
 }
 
-/* =================== characters & battle effects =================== */
+/* =================== reset button =================== */
+.btn-reset {
+  display: flex;
+  justify-content: end;
+}
+
+.reset {
+  margin: 1%;
+}
