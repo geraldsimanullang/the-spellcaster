@@ -191,16 +191,16 @@ input[name="power"][disabled]+ label {
 }
 
 .btn-attack button#attack {
-  background: url(Assets/1920x1080-undertale-fight-attack-button-ezgif.com-gif-to-jpg-converter.png);
-  background-size:10rem;
+  background: url(Assets/attackButton.png);
+  background-size:7rem;
   border: none;
   border-radius: 3px;
   color: white;
   cursor: pointer;
   /* font-size: px; */
   margin: 1rem;
-  padding-bottom:4.5rem;
-  padding-right: 9.6rem;
+  padding-bottom:3rem;
+  padding-right: 6.7rem;
 }
 
 /* =================== reset button =================== */
@@ -210,7 +210,7 @@ input[name="power"][disabled]+ label {
 }
 
 .reset {
-  background: url(Assets/R.png);
+  background: url(Assets/resetButton.png);
   background-size:6rem;
   margin: 1%;
   padding-bottom: 2rem;
