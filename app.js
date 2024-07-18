@@ -43,11 +43,22 @@ const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 updateHpBar();
 powerPermission();
 addAttackHistory();
+document.getElementById('player-history').innerHTML = '';
+document.getElementById('opponent-history').innerHTML = '';
+checkWinner();
 /*   --- INITIALIZATION END --- */
 
 
 function main(playerMove) {
-  
+  // validation
+  if(!playerMove.power && !playerMove.element) {
+    return alert('Silahkan pilih kekuatan dan elemen terlebih dahulu')
+  } else if (!playerMove.power) {
+    return alert('Kekuatan belum dipilih')
+  } else if (!playerMove.element) {
+    return alert('Elemen belum dipilih')
+  }
+
   powerPermission();
   // player side
   const playerPower = playerMove.power;
@@ -88,7 +99,8 @@ function main(playerMove) {
   // update bar hp & disable power
   updateHpBar();
   powerPermission();
-  addAttackHistory();// PLAYER SIDE END 
+  addAttackHistory();
+  checkWinner();// PLAYER SIDE END 
   
   // CHECKPOINT
   // console.log('player move :', playerMove)
@@ -225,8 +237,12 @@ function addAttackHistory(){
 
 function checkWinner() {
   if (healthPoint.player <= 0 && healthPoint.opponent > 0) {
-
-  } 
+    alert('Anda tidak berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+  } else if (healthPoint.player > 0 && healthPoint.opponent <= 0) {
+    alert('Selamat anda berhasil mengalahkan lawan! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+  } else if (healthPoint.player <= 0 && healthPoint.opponent <= 0) {
+    alert('Seri! \n silahkan tekan tombol Restart untuk mencoba lagi.')
+  }
 }
 
 function reset() {
