@@ -84,7 +84,7 @@ function main(playerMove) {
   cooldowns.opponent[opponentMove.power.toString()] = opponentMove.power - 1;
   
   // animations
-  attackingAnimation();
+  attackingAnimation(playerMove, opponentMove);
   
   // calculate damage
   const damageTaken = generateDamageTaken(playerMove, opponentMove)
@@ -168,11 +168,24 @@ function generateDamageTaken(playerMove, opponentMove){
   return damageTaken;
 }
 
-function attackingAnimation() {
+function attackingAnimation(playerMove, opponentMove) {
   const char = document.getElementsByClassName("char");
+  const playerAtkPic = document.getElementById("player-atk-pic");
+  const opponentAtkPic = document.getElementById("opponent-atk-pic");
 
   char[0].setAttribute("src", "Assets/playeratt.gif");
   char[1].setAttribute("src", "Assets/enemyatt.gif");
+
+  const playerPower = playerMove.power;
+  const playerElement = playerMove.element;
+  const opponentPower = opponentMove.power;
+  const opponentElement = opponentMove.element;
+
+  playerAtkPic.setAttribute("src", `Assets/${playerElement}.png`)
+  playerAtkPic.style.width = `${playerPower}vw`
+  opponentAtkPic.setAttribute("src", `Assets/${opponentElement}.png`)
+  opponentAtkPic.style.width = `${opponentPower}vw`
+
 
   setTimeout(() => {
     char[0].setAttribute("src", "Assets/playeridle.gif");
