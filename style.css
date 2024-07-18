@@ -99,6 +99,20 @@ input[name="power"] { /* ini radio */
 }
 
 input[name="power"] + label {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  margin: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+input[name="power"]:checked + label {
   background-color: white;
   color: black;
 }
@@ -106,6 +120,7 @@ input[name="power"] + label {
 .selection-container {
   width: 4%;
 }
+
 
 .cooldowns {
   margin: 0;
@@ -129,51 +144,6 @@ input[name="power"] + label {
   font-size: 16px;
   width: 50px;
   text-align: center;
-}
-
-/* =================== element button =================== */
-
-.element button#fire {
-  background-color: red;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
-}
-
-.element button#wind {
-  background-color: grey;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
-}
-
-.element button#water {
-  background-color: blue;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  padding: 10px 20px;
-}
-
-.element button#fire:hover {
-  background-color: darkred;
-}
-.element button#wind:hover {
-  background-color: darkgrey;
-}
-.element button#water:hover {
-  background-color: #0056b3;
 }
 
 /* =================== attack button =================== */
