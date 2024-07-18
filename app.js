@@ -64,8 +64,8 @@ function main(playerMove) {
   const playerElement = playerMove.element;
   attackHistory.player.push([playerPower, playerElement]);
   for (power in cooldowns.player) {
-    if (cooldowns.player[power] >= 1) cooldowns.player[power] -= 1;
-    else availableAttack.player[power] = true;
+    if (cooldowns.player[power] > 1) cooldowns.player[power] -= 1;
+    else { availableAttack.player[power] = true; cooldowns.player[power] = 0 }
   }
   availableAttack.player[playerPower] = false;
   cooldowns.player[playerPower.toString()] = playerPower - 1;
@@ -83,7 +83,8 @@ function main(playerMove) {
   availableAttack.opponent[opponentMove.power] = false;
   cooldowns.opponent[opponentMove.power.toString()] = opponentMove.power - 1;
   
-  
+  // animations
+  attackingAnimation();
   
   // calculate damage
   const damageTaken = generateDamageTaken(playerMove, opponentMove)
@@ -166,6 +167,20 @@ function generateDamageTaken(playerMove, opponentMove){
 
   return damageTaken;
 }
+
+function attackingAnimation() {
+  const char = document.getElementsByClassName("char");
+
+  char[0].setAttribute("src", "Assets/playeratt.gif");
+  char[1].setAttribute("src", "Assets/enemyatt.gif");
+
+  setTimeout(() => {
+    char[0].setAttribute("src", "Assets/playeridle.gif");
+    char[1].setAttribute("src", "Assets/enemyidle.gif");
+  }, 500);
+}
+
+
 
 function updateHpBar() {
   document.getElementById('player-health').value = healthPoint.player.toString();
@@ -269,3 +284,4 @@ function reset() {
   localStorage.clear()
   location.reload()
 }
+

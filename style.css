@@ -60,11 +60,62 @@ body {
   
 } 
 
+/* =================== main content =================== */
+.main-content {
+  display: flex;
+  justify-content: center;
+  height: 30%;
+}
+
+.player, .opponent {
+  height: 100%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+}
+
+#player-char, #opponent-char {
+  height: 40%;
+}
+
+#opponent-char {
+  transform: scaleX(-1);
+}
+
+.battle-effect {
+  min-width: 50%;
+  border: 1px solid;
+}
+
+
 /* =================== cooldowns =================== */
+.attack-power {
+  display: flex;
+  width: 100%;
+}
+
+input[name="power"] { /* ini radio */
+  display: none;
+}
+
+input[name="power"] + label {
+  background-color: white;
+  color: black;
+}
+
+.selection-container {
+  width: 4%;
+}
+
 .cooldowns {
   margin: 0;
   color: gray;
   font-style: italic;
+}
+
+.power-selection {
+  width: 90%;
+
 }
 
 /* =================== input attack =================== */
@@ -143,20 +194,3 @@ body {
 }
 
 /* =================== characters & battle effects =================== */
-.main-content {
-  display: flex;
-  justify-content: center;
-
-}
-
-.player {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-}
-
-.battle-effect {
-  width: 100px;
-  height: 20px;
-  border: 1px solid;
-}
