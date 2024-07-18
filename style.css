@@ -95,7 +95,7 @@ body {
 }
 
 input[name="power"] { /* ini radio */
-  display: none;
+
 }
 
 input[name="power"] + label {
