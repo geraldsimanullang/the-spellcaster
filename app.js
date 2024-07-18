@@ -43,6 +43,7 @@ const attackHistory = JSON.parse(localStorage.getItem('attackHistory'))
 updateHpBar();
 powerPermission();
 addAttackHistory();
+updateCdInfo();
 checkWinner();
 /*   --- INITIALIZATION END --- */
 
@@ -63,11 +64,12 @@ function main(playerMove) {
   const playerElement = playerMove.element;
   attackHistory.player.push([playerPower, playerElement]);
   for (power in cooldowns.player) {
-    if (cooldowns.player[power] > 1) cooldowns.player[power] -= 1;
+    if (cooldowns.player[power] >= 1) cooldowns.player[power] -= 1;
     else availableAttack.player[power] = true;
   }
   availableAttack.player[playerPower] = false;
-  cooldowns.player[playerPower.toString()] = playerPower - 1; 
+  cooldowns.player[playerPower.toString()] = playerPower - 1;
+  localStorage.setItem('cooldowns', JSON.stringify(cooldowns));
   
   
   
@@ -98,6 +100,7 @@ function main(playerMove) {
   updateHpBar();
   powerPermission();
   addAttackHistory();
+  updateCdInfo();
   checkWinner();// PLAYER SIDE END 
   
   // CHECKPOINT
@@ -234,6 +237,21 @@ function addAttackHistory(){
     playerElem.style.margin = "0 0.5% 0 0";
     playerElem.style.width = "1.5%"
     playerNode.appendChild(playerElem);
+  }
+}
+
+function updateCdInfo() {
+  const cdDisplay = document.getElementsByClassName('cooldowns');
+  const currentCd = Object.values(cooldowns.player)
+
+  for (let i = 0; i < currentCd.length; i++) {
+    if (currentCd[i] > 0) {
+      cdDisplay[i].innerHTML = currentCd[i]
+      cdDisplay[i].style.opacity = "1";
+    }
+    else {
+      cdDisplay[i].style.opacity = "0";
+    }
   }
 }
 

@@ -60,6 +60,13 @@ body {
   
 } 
 
+/* =================== cooldowns =================== */
+.cooldowns {
+  margin: 0;
+  color: gray;
+  font-style: italic;
+}
+
 /* =================== input attack =================== */
 .attack-power {
   margin-bottom: 20px;
