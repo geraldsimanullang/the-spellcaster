@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: black;
+  background-color: rgb(39, 30, 30);
   margin: 0;
   padding: 0;
   display: flex;
@@ -19,10 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 90%;
-  aspect-ratio: 16 / 9;
-
-  
+  width: 80%;
+  aspect-ratio: 16 / 8;
 }
 
 /* ===================attackHistory =================== */
@@ -58,7 +56,7 @@ body {
 
 progress[value] {
   background-color: green;
-  width: 28rem;
+  width: 20rem;
   height: 50%;
 }
 
@@ -66,23 +64,23 @@ progress[value] {
 .main-content {
   display: flex;
   justify-content: center;
-  height: 30%;
-  margin-top: 10%;
+  height: 20%;
+  margin-top: 15%;
 }
 
 .battle-effect {
   display:flex;
-  align-items: end;
+  align-items: center;
 }
 
 .player, .opponent {
-  height: 100%;
+  height: 80%;
   display: flex;
-  align-items: end;
+  align-items: center;
 }
 
 #player-char, #opponent-char {
-  height: 50%;
+  height: 100%;
 }
 
 #opponent-char {
@@ -95,9 +93,15 @@ progress[value] {
   min-width: 50%;
 }
 
+@keyframes opponentAttackAnimation {
+  from { transform: translateX(0);}
+  to { transform: translateX(-40vw);}
+}
 
-.opponentAttack {
-  transform: scaleX(-1)
+
+.opponentAttack-normal {
+  transform: scaleX(-1);
+  animation: opponentAttackAnimation 2s backwards
 }
 
 @keyframes playerAttackAnimation {
@@ -105,8 +109,12 @@ progress[value] {
   to { transform: translateX(40vw)}
 }
 
-.playerAttack {
-  animation: '';
+.playerAttack-normal {
+  
+}
+
+.playerAttack-animate {
+  animation: playerAttackAnimation 2s forwards;
 }
 
 /* =================== cooldowns & input attack =================== */
@@ -207,22 +215,20 @@ input[name="power"][disabled]+ label {
 /* =================== attack button =================== */
 
 .btn-attack {
-  margin-top: 1%;
-  height: 4%;
+  margin-top: 20px;
 }
 
 .btn-attack button#attack {
-  background: url('Assets/1920x1080-undertale-fight-attack-button-ezgif.com-gif-to-jpg-converter.png');
-  background-size:cover;
+  background: url(Assets/attackButton.png);
+  background-size:7rem;
   border: none;
   border-radius: 3px;
   color: white;
   cursor: pointer;
   /* font-size: px; */
-
-  padding-bottom:2rem;
-  padding-right: 9.6rem;
-  max-height: 100%;
+  margin: 1rem;
+  padding-bottom:3rem;
+  padding-right: 6.7rem;
 }
 
 /* =================== reset button =================== */
@@ -232,7 +238,7 @@ input[name="power"][disabled]+ label {
 }
 
 .reset {
-  background: url('Assets/R.png');
+  background: url(Assets/resetButton.png);
   background-size:6rem;
   margin: 1%;
   padding-bottom: 2rem;
