@@ -350,4 +350,3 @@ function reset() {
   localStorage.clear()
   location.reload()
 }
-
