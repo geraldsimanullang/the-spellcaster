@@ -210,7 +210,7 @@ function attackingAnimation(playerMove, opponentMove) {
 
   setTimeout(() => {
     char[0].setAttribute("src", "Assets/playeridle.gif");
-    char[1].setAttribute("src", "Assets/enemyidle.gif");
+    char[1].setAttribute("src", "Assets/enemyIdle.gif");
   }, 1000);
 }
 
